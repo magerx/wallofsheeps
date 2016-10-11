@@ -102,7 +102,7 @@ Just change directory to express_app, do the following command, do not forget to
 ╭─~/Coding/Projects/web/wallofsheep/express_app on master✔ using
 ╰─± npm install & npm start
 ```
-Now, You can wait for the comming sheep :smile:
+Now, You can wait for the comming sheep
 
 Work in progress
 ================
@@ -115,4 +115,5 @@ Work in progress
 
 Screenshot
 ===========
-![wallofsheep](/screenshot/screenshot.jpeg?raw=true "Wall of Sheep")
+![wallofsheep]('/screenshot/password.jpg')
+![wallofsheep]('/screenshot/photos.jpg')
