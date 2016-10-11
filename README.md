@@ -39,7 +39,11 @@ Packet capturing depends on [mranney/node_pcap](https://github.com/mranney/node_
 ```
 $ npm install
 ```
+trouble installing pcap?
 
+```
+$ npm install npm install https://github.com/mranney/node_pcap.git
+```
 That's it.
 
 Basic usage
@@ -59,8 +63,6 @@ $ sudo node sniffer.js -i en0
 | |/ |/ / ___ |/ /___/ /___   / /_/ / __/     ___/ / __  / /___/ /___/ ____/
 |__/|__/_/  |_/_____/_____/   \____/_/       /____/_/ /_/_____/_____/_/
 [*] Using interface: en0
-[192.168.0.16:61881 -> 140.***.**.***:80] Account: magerx@paxmac.org
-[192.168.0.16:61881 -> 140.***.**.***:80] Password: hello123!@#
 ```
 
 
@@ -89,8 +91,6 @@ $ sudo node sniffer.js -i en0 -s
 | |/ |/ / ___ |/ /___/ /___   / /_/ / __/     ___/ / __  / /___/ /___/ ____/
 |__/|__/_/  |_/_____/_____/   \____/_/       /____/_/ /_/_____/_____/_/
 [*] Using interface: en0
-[192.168.0.16:61881 -> 140.***.**.***:80] Account: magerx@paxmac.org
-[192.168.0.16:61881 -> 140.***.**.***:80] Password: hello123!@#
 ```
 How to Run Web
 ==============
