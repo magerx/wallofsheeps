@@ -15,7 +15,6 @@ if (argv.s) {
 function GetHTTPLoginAccount(data) {
     var account = null;
 
-    // Borrowed from https://github.com/lgandx/PCredz/blob/master/Pcredz#L65
     var userFields = [
         'log', 'login', 'wpname', 'ahd_username', 'unickname', 'nickname', 'user',
         'user_name', 'alias', 'pseudo', 'email', 'username', '_username', 'userid',
@@ -51,7 +50,6 @@ function GetHTTPLoginAccount(data) {
 function GetHTTPLoginPassword(data) {
     var password = null;
 
-    // Borrowed from https://github.com/lgandx/PCredz/blob/master/Pcredz#L71
     var passFields = [
         'os_password', 'txtPwd', 'loginPasswd', 'ahd_password', 'pass', 'password',
         '_password', 'passwd', 'passwrd', 'session_password', 'sessionpassword',

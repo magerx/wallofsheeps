@@ -21,16 +21,16 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/John-Lin/wallofsheep"
+    "url": "https://github.com/magerx/wallofsheeps"
   },
   "keywords": [
     "sniffer",
     "realtimeWallOfSheep"
   ],
-  "author": "Calvin Jeng <locky4567@gmail.com> (https://github.com/lockys)",
+  "author": "magerx@paxmac.org",
   "license": "Apache License",
   "bugs": {
-    "url": "https://github.com/John-Lin/wallofsheep/issues"
+    "url": "https://github.com/magerx/wallofsheeps/issues"
   },
-  "homepage": "https://github.com/John-Lin/wallofsheep"
+  "homepage": "https://github.com/magerx/wallofsheeps"
 }
