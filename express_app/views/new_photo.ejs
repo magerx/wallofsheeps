@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <meta charset="utf-8">
+    <title>blueimp Gallery</title>
+    <link rel="stylesheet" href="stylesheets/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="stylesheets/blueimp-gallery-indicator.css">
+    <link rel="stylesheet" href="stylesheets/demo.css">
+</head>
+<body>
+<h2># Can I Get The Photos?</h2>
+<!-- The container for the list of example images -->
+<div id='photo-wall'>
+    <div id="links" class="links">
+        <% lists.forEach(function(el, index) { %>
+        <% if (el.picture) { %>
+        <a href="<%= el.picture %>" data-gallery="">
+            <img src="<%= el.picture %>" style="width:75px;height:75px;">
+        </a>
+        <% } %>
+        <% }); %>
+    </div>
+</div>
+
+<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+<script async defer id="github-bjs" src="javascripts/buttons.js"></script>
+
+<footer>
+    Meili-inc Security Team Wall of Sheep @ 2016<br/><br/>
+</footer>
+
+<!--<div class="arrow">-->
+<!--<img src="/images/arrow-top.png">-->
+<!--</div>-->
+
+<script src='javascripts/jquery.min.js'></script>
+<script src='javascripts/js-libs/jq-hotkey.js'></script>
+<script src='javascripts/socket.io-1.2.0.js'></script>
+<script>
+    var arrowEle = $('.arrow'),
+            inputListeners = {},
+            socket = io.connect();
+
+    inputListeners.init = function () {
+//        this.onArrowClick();
+        this.onSocketListen();
+    }
+
+    //    inputListeners.onArrowClick = function () {
+    //        arrowEle.click(function (e) {
+    //            $('html, body').animate({scrollTop: 0}, 600);
+    //        });
+    //    }
+
+    inputListeners.onSocketListen = function () {
+        socket.on("new-sheep-catch-event", function (d) {
+            var infoArr = [],
+                    numEle = $('.count-num'),
+                    num = parseInt(numEle.html()) + 1;
+
+            if (d.picture) {
+
+                infoArr.push('<a href='+d.picture + ' data-gallery=""><img src='+ d.picture+ ' style="width:75px;height:75px;"></a>');
+
+                $('#photo-wall').prepend(infoArr.join(""));
+                numEle.html(num);
+            }
+
+        });
+    }
+
+    inputListeners.init();
+
+    window.onbeforeunload = function () {
+        if (typeof timer !== 'undefined') {
+            statusRef.update({status: 'ON'});
+        }
+    }
+</script>
+<div class="bottom_tools" style="bottom: 40px;">
+    <a id="scrollUp" href="javascript:;" title="飞回顶部"
+       style="display: block;"></a>
+</div>
+<script src="javascripts/backtop.js"></script>
+<script src="javascripts/js/blueimp-helper.js"></script>
+<script src="javascripts/js/blueimp-gallery.js"></script>
+<script src="javascripts/js/blueimp-gallery-fullscreen.js"></script>
+<script src="javascripts/js/blueimp-gallery-indicator.js"></script>
+<script src="javascripts/js/blueimp-gallery-vimeo.js"></script>
+<script src="javascripts/js/vendor/jquery.js"></script>
+<script src="javascripts/js/jquery.blueimp-gallery.js"></script>
+</body>
+</html>

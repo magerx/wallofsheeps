@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/stylesheets/css-libs/pure-css/pure.css">
+    <link rel="stylesheet" href="/stylesheets/custom/index/custom.css">
+    <link rel="stylesheet" href="/stylesheets/css-libs/pure-css/custom-responsive.css">
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
+    <link href="/stylesheets/bootstrap-table.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A wall of sheep to get data from firebase in real time.">
+    <meta name="keywords" content="Password streaking, firebaseapp, network security, sniffer">
+    <meta name="author" content="lockys">
+    <meta charset="UTF-8">
+    <title>Wall of Sheep</title>
+</head>
+
+<body>
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/bootstrap-table.min.js"></script>
+<!-- A CONTAINER TO CONVER ALL THE PAGE -->
+<div class="opacity-container"></div>
+
+<!-- <img class="wolf" src="static/images/wolf-in-sheeps-clothing.png"> -->
+<!-- <img class="sheep" src="static/images/sheep.png"> -->
+<div class="title-banner">
+    <h1># Can I Get The Pas***ord?</h1>
+    <!--<h3>$ Enjoy it</h3>-->
+    <!--<h3>Wait a minute,</h3>-->
+    <h3>Below are the newest <font color="red"><span class='count-num'><%= lists.length %></span></font> sheep we just
+        catched for dinner now.
+    </h3>
+
+    <div class="status-container" style="display:none;">Sniffer Status:
+        <div class="status bg-red"></div>
+    </div>
+
+    <h3 class="content-hidden sniffer-indication">Sniffer will restart in <span class="clock"></span> seconds.</h3>
+    <h3 class="closed-alert content-hidden fg-red">Someone or manager closed the sniffer, please wait.</h3>
+</div>
+
+<script>
+    function rowStyle(row, index) {
+        var classes = ['active', 'success', 'info', 'warning', 'danger'];
+
+        if (index % 2 === 0 && index / 2 < classes.length) {
+            return {
+                classes: classes[index / 2]
+            };
+        }
+        return {};
+    }
+</script>
+<!-- TABLE OF PASSWORD. -->
+<div class="table-container">
+    <table data-toggle="table">
+        <thead>
+        <tr>
+            <th>Account</th>
+            <th>Password</th>
+            <th>Cookie</th>
+            <th>Client</th>
+            <th>Server</th>
+            <th>Domain</th>
+            <th>Protocol</th>
+            <th>Ether</th>
+        </tr>
+        </thead>
+        <tbody id='pwd-wall'>
+        <% lists.forEach(function(el, index) { %>
+        <% if (el.password || el.cookies) { %>
+        <tr>
+            <td>
+                <% if (el.login) { %>
+
+                <%= (el.login).substr(0, 20) %>
+                <% } %>
+            </td>
+            <td>
+                <% if (el.password) { %>
+                <%= (el.password).replace(/[a-g1-6]/g, '*') %>
+                <% } %>
+
+            </td>
+            <td class="cookie">
+                <div style="height:40px; overflow: scroll"><%= el.cookies || null %></div>
+            </td>
+            <td><%= el.sIP %>:<%= el.sPort %></td>
+            <td><%= el.dIP %>:<%= el.dPort %></td>
+            <td><%= el.domain %></td>
+            <td><%= el.protocol %></td>
+            <td><%= el.shost %></td>
+        </tr>
+        <% } %>
+        <% }); %>
+        </tbody>
+    </table>
+</div>
+
+<script async defer id="github-bjs" src="javascripts/buttons.js"></script>
+
+<footer>
+    Meili-inc Security Team Wall of Sheep @ 2016<br/><br/>
+</footer>
+
+<!--<div class="arrow">-->
+<!--<img src="/images/arrow-top.png">-->
+<!--</div>-->
+
+<script src='javascripts/jquery.min.js'></script>
+<script src='javascripts/js-libs/jq-hotkey.js'></script>
+<script src='javascripts/socket.io-1.2.0.js'></script>
+<script>
+    var arrowEle = $('.arrow'),
+            inputListeners = {},
+            socket = io.connect();
+
+    inputListeners.init = function () {
+//        this.onArrowClick();
+        this.onSocketListen();
+    }
+
+    //    inputListeners.onArrowClick = function () {
+    //        arrowEle.click(function (e) {
+    //            $('html, body').animate({scrollTop: 0}, 600);
+    //        });
+    //    }
+
+    inputListeners.onSocketListen = function () {
+        socket.on("new-sheep-catch-event", function (d) {
+            var infoArr = ['<tr>'],
+                    numEle = $('.count-num'),
+                    num = parseInt(numEle.html()) + 1;
+
+            if (d.password || d.cookies) {
+                if (d.password) {
+                    var password = (d.password).replace(/[a-g1-6]/g, '*');
+                }
+                else {
+                    var password = d.password;
+                }
+
+                infoArr.push('<td>' + d.login + '</td>');
+                infoArr.push('<td>' + password + '</td>');
+                infoArr.push('<td class="cookie"><div style="height:40px; overflow: scroll">' + d.cookies + '</div></td>');
+                infoArr.push('<td>' + d.sIP + ':' + d.sPort + '</td>');
+                infoArr.push('<td>' + d.dIP + ':' + d.dPort + '</td>');
+                infoArr.push('<td>' + d.domain + '</td>');
+                infoArr.push('<td>' + d.protocol + '</td>');
+                infoArr.push('<td>' + d.shost + '</td>')
+                infoArr.push('</tr>');
+
+                $('#pwd-wall').prepend(infoArr.join(""));
+                numEle.html(num);
+            }
+
+        });
+    }
+
+    inputListeners.init();
+
+    window.onbeforeunload = function () {
+        if (typeof timer !== 'undefined') {
+            statusRef.update({status: 'ON'});
+        }
+    }
+</script>
+<div class="bottom_tools" style="bottom: 40px;">
+    <a id="scrollUp" href="javascript:;" title="飞回顶部"
+       style="display: block;"></a>
+</div>
+<script src="javascripts/backtop.js"></script>
+</body>
+</html>

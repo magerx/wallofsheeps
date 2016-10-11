@@ -1,0 +1,13 @@
+{
+  "name": "Password-Sniffer",
+  "version": "0.0.1",
+  "private": true,
+  "description" : "Live Password capture",
+  "author": "magerx <magerx@paxmac.org>",
+  "dependencies": {
+    "pcap": ">=2.0.0",
+    "thinky": ">=2.0.2",
+    "minimist": ">=1.1.1",
+    "request": ">=2.7.0"
+  }
+}

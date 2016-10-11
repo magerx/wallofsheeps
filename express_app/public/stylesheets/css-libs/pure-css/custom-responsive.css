@@ -1,0 +1,17 @@
+@media only screen and (max-width: 1050px) {
+    .sheep{
+        display: none;
+    }
+    .wolf{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 620) {
+    .sheep{
+        display: none;
+    }
+    .wolf{
+        display: none;
+    }
+}
