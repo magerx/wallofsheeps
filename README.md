@@ -115,5 +115,5 @@ Work in progress
 
 Screenshot
 ===========
-![wallofsheep]('/screenshot/password.jpg')
-![wallofsheep]('/screenshot/photos.jpg')
+![wallofsheep](screenshot/password.jpg)
+![wallofsheep](screenshot/photos.jpg)

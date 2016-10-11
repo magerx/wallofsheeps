@@ -1,6 +1,0 @@
-dpkt==1.8.6
-pypcap==1.1.1
-python-firebase==1.2
-requests==2.6.0
-wsgiref==0.1.2
-rethinkdb==2.0.0-1
