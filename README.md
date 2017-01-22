@@ -109,8 +109,6 @@ Work in progress
 - [x] Support [RethinkDB](http://www.rethinkdb.com/) provided push/sync data in realtime.
 - [x] Parsing user/password in IMAP protocol.
 - [x] Parsing user/password in POP3 protocol.
-- [ ] A new Web interface for showing off rely on [RethinkDB](http://www.rethinkdb.com/).
-- [ ] Any protocol not encrypted (e.g., telnet, irc etc.)
 
 
 Screenshot
