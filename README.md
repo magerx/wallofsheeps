@@ -12,8 +12,6 @@ The Wall of Sheep is dedicated to network security research and we make use of a
 
 Without SSL/TLS, your password is just like streaking. Therefore, we recommend that service provider in the list should secure their websites with HTTPS.
 
-The circle symbolizes that the status of sniffer program. Green is online, otherwise offline.
-
 Installation
 =============
 
@@ -42,7 +40,7 @@ $ npm install
 trouble installing pcap?
 
 ```
-$ npm install npm install https://github.com/mranney/node_pcap.git
+$ npm install https://github.com/mranney/node_pcap.git
 ```
 That's it.
 
@@ -54,7 +52,7 @@ Two ways to use
 Not saving the credentials. Start the `sniffer` with sudo
 
 ```
-hanshui@hanshui  ~/pentest/wallofsheep /nodejs (master)
+magerx@paxmac  ~/pentest/wallofsheep /nodejs (master)
 $ sudo node sniffer.js -i en0
 [-] Loading RethinkDB module.
   _       _____    __    __       ____  ______   _____ __  __________________
@@ -82,7 +80,7 @@ info: Server ready
 Second, open a new terminal and start the `sniffer` with sudo
 
 ```
-hanshui@hanshui  ~/pentest/wallofsheep /nodejs (master)
+magerx@paxmac  ~/pentest/wallofsheep /nodejs (master)
 $ sudo node sniffer.js -i en0 -s
 [-] Loading RethinkDB module.
   _       _____    __    __       ____  ______   _____ __  __________________
