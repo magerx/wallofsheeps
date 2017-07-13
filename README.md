@@ -97,8 +97,7 @@ How to Run Web
 Just change directory to express_app, do the following command, do not forget to run rethinkdb and sniffer.js metioned above.
 
 ```
-╭─~/Coding/Projects/web/wallofsheep/express_app on master✔ using
-╰─± npm install & npm start
+ magerx@paxmac  ~/wallofsheeps/express_app   master ●✚  npm install & npm start
 ```
 Now, You can wait for the comming sheep
 

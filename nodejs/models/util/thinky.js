@@ -1,4 +1,7 @@
-// file: util/thinky.js
+/*File:           thinkyz.js */
+/*Author:         magerx@paxmac.org*/
+/*Last modified:  2017/07/05*/
+
 var thinky = require('thinky')({
   // thinky's options
 
@@ -22,6 +25,6 @@ var thinky = require('thinky')({
   // db: the default database, default "test"
 
   // authKey: the authentification key to the RethinkDB server, default ""
-})
+});
 
 module.exports = thinky;
