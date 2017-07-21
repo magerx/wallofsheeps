@@ -1,8 +1,9 @@
-/*File:           user.js */
-/*Author:         magerx@paxmac.org*/
-/*Last modified:  2017/07/05*/
+/**File:          user.js
+ *Author:         magerx@paxmac.org
+ *Last modified:  2017/07/05
+ */
 
-var thinky = require('thinky')();
+var thinky = require("thinky")();
 var type = thinky.type;
 
 var User = thinky.createModel("User", {

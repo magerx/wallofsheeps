@@ -2,7 +2,7 @@
 /*Author:         magerx@paxmac.org*/
 /*Last modified:  2017/07/05*/
 
-var thinky = require(__dirname + '/util/thinky.js');
+var thinky = require(__dirname + "/util/thinky.js");
 
 var type = thinky.type;
 

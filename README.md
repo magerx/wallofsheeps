@@ -24,6 +24,7 @@ $ brew update
 $ brew install node
 $ brew install npm
 $ brew install rethinkdb
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
 Clone the repo and change directory to `nodejs` folder.
@@ -54,13 +55,12 @@ Not saving the credentials. Start the `sniffer` with sudo
 ```
 magerx@paxmac  ~/pentest/wallofsheep /nodejs (master)
 $ sudo node sniffer.js -i en0
-[-] Loading RethinkDB module.
   _       _____    __    __       ____  ______   _____ __  __________________
 | |     / /   |  / /   / /      / __ \/ ____/  / ___// / / / ____/ ____/ __ \
 | | /| / / /| | / /   / /      / / / / /_      \__ \/ /_/ / __/ / __/ / /_/ /
 | |/ |/ / ___ |/ /___/ /___   / /_/ / __/     ___/ / __  / /___/ /___/ ____/
 |__/|__/_/  |_/_____/_____/   \____/_/       /____/_/ /_/_____/_____/_/
-[*] Using interface: en0
+[INFO] [2017-07-05 14:13:45] Using interface: en0
 ```
 
 
@@ -82,31 +82,24 @@ Second, open a new terminal and start the `sniffer` with sudo
 ```
 magerx@paxmac  ~/pentest/wallofsheep /nodejs (master)
 $ sudo node sniffer.js -i en0 -s
-[-] Loading RethinkDB module.
+[INFO] [2017-07-05 14:13:45] Loading RethinkDB module.
   _       _____    __    __       ____  ______   _____ __  __________________
 | |     / /   |  / /   / /      / __ \/ ____/  / ___// / / / ____/ ____/ __ \
 | | /| / / /| | / /   / /      / / / / /_      \__ \/ /_/ / __/ / __/ / /_/ /
 | |/ |/ / ___ |/ /___/ /___   / /_/ / __/     ___/ / __  / /___/ /___/ ____/
 |__/|__/_/  |_/_____/_____/   \____/_/       /____/_/ /_/_____/_____/_/
-[*] Using interface: en0
+[INFO] [2017-07-05 14:13:45] Using interface: en0
 ```
 How to Run Web
 ==============
 
 **Running web implemented in express**  
-Just change directory to express_app, do the following command, do not forget to run rethinkdb and sniffer.js metioned above.
+Just change directory to web, do the following command, do not forget to run rethinkdb and sniffer.js metioned above.
 
 ```
- magerx@paxmac  ~/wallofsheeps/express_app   master ●✚  npm install & npm start
+magerx@paxmac  ~/wallofsheeps/web   master ●✚  npm install & npm start
 ```
 Now, You can wait for the comming sheep
-
-Work in progress
-================
-- [x] Support [RethinkDB](http://www.rethinkdb.com/) provided push/sync data in realtime.
-- [x] Parsing user/password in IMAP protocol.
-- [x] Parsing user/password in POP3 protocol.
-
 
 Screenshot
 ===========

@@ -1,162 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/css-libs/pure-css/pure.css">
-    <link rel="stylesheet" href="/css/custom/index/custom.css">
-    <link rel="stylesheet" href="/css/css-libs/pure-css/custom-responsive.css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-table.css">
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A wall of sheep to get data from firebase in real time.">
-    <meta name="keywords" content="Password streaking, firebaseapp, network security, sniffer">
-    <meta name="author" content="lockys">
-    <meta charset="UTF-8">
-    <title>Wall of Sheep</title>
+    <meta charset="utf-8"/>
+    <title>Wall of sheep</title>
+    <meta name="description" content="Wall of sheep"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Wallofsheep">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="images/logo.png">
+    <link rel="shortcut icon" sizes="196x196" href="images/logo.png">
+    <!-- style -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/app.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/font.css" type="text/css"/>
+    <link rel="stylesheet" href="css/barrager.css" type="text/css"/>
 </head>
+<body class="dark">
+<div class="app" id="app">
+    <!-- content -->
+    <div id="content" class="app-content box-shadow-z0" role="main">
 
-<body>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-table.min.js"></script>
-<!-- A CONTAINER TO CONVER ALL THE PAGE -->
-<div class="opacity-container"></div>
+        <div class="app-footer">
+            <div class="p-a text-xs">
+                <div class="text-center text-muted">
+                    &copy; Copyright <strong>Pax.Mac Team</strong> <span
+                            class="hidden-xs-down">- Wall of sheep v1.0</span>
+                    <a ui-scroll-to="content"><i class="fa fa-long-arrow-up p-x-sm"></i></a>
+                </div>
+            </div>
+        </div>
 
+        <div ui-view class="app-body" id="view">
+            <div class="padding">
+                <div class="box">
+                    <div class="box-header">
+                        <h2 class="text-center"># Can I Get The Pas***ord?</h2>
+                        <small class="text-center">Below are the newest <code><%= lists.length %></code> sheep we just
+                            catched for
+                            dinner now.
+                        </small>
+                    </div>
+                    <table class="table table-hover b-t">
+                        <thead>
+                        <tr>
+                            <!--<th>#ID</th>-->
+                            <th>Account</th>
+                            <th>Password</th>
+                            <th class="text-center">Cookie</th>
+                            <th>Client</th>
+                            <th>Server</th>
+                            <th>Domain</th>
+                            <th>Protocol</th>
+                            <th>Ether</th>
+                        </tr>
+                        </thead>
+                        <tbody id="pwd-wall">
+                        <% lists.forEach(function(el, index) { %>
+                        <% if (el.password || el.cookies) { %>
+                        <tr>
+                            <!--<td>-->
+                            <!--<%= index %>-->
+                            <!--</td>-->
+                            <td>
+                                <% if (el.login) { %>
+                                <%= (el.login).substr(0, 20) %>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if (el.password) { %>
+                                <%= (el.password).replace(/[a-g1-6]/g, "*") %>
+                                <% } %>
+                            </td>
+                            <td class="cookie" data-container="body" data-toggle="tooltip"
+                                data-placement="top" title="<%= el.cookies || null %>">
+                                <%= el.cookies || null %>
+                            </td>
+                            <td><%= el.sIP %>:<%= el.sPort %></td>
+                            <td><%= el.dIP %>:<%= el.dPort %></td>
+                            <td><%= el.domain %></td>
+                            <td><%= el.protocol %></td>
+                            <td><%= el.shost %></td>
+                        </tr>
+                        <% } %>
+                        <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-<div class="title-banner">
-    <h1># Can I Get The Pas***ord?</h1>
-    <h3>Below are the newest <font color="red"><span class='count-num'><%= lists.length %></span></font> sheep we just
-        catched for dinner now.
-    </h3>
-
-    <div class="status-container" style="display:none;">Sniffer Status:
-        <div class="status bg-red"></div>
     </div>
-
-    <h3 class="content-hidden sniffer-indication">Sniffer will restart in <span class="clock"></span> seconds.</h3>
-    <h3 class="closed-alert content-hidden fg-red">Someone or manager closed the sniffer, please wait.</h3>
 </div>
 
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/underscore-min.js"></script>
+<script src="js/jquery.storageapi.min.js"></script>
+<script src="js/config.lazyload.js"></script>
+<script src="js/ui-load.js"></script>
+<script src="js/ui-jp.js"></script>
+<script src="js/ui-include.js"></script>
+<script src="js/ui-scroll-to.js"></script>
+<script src="js/app.js"></script>
+<script src="js/socket.io.js"></script>
+<script src="js/jquery.barrager.min.js"></script>
+
 <script>
-    function rowStyle(row, index) {
-        var classes = ['active', 'success', 'info', 'warning', 'danger'];
+    var socket = io.connect("http://localhost:3000");
+    socket.on("new-sheep", function (d) {
+        var infoArr = ["<tr>"],
+            numEle = $(".count-num"),
+            num = parseInt(numEle.html()) + 1;
 
-        if (index % 2 === 0 && index / 2 < classes.length) {
-            return {
-                classes: classes[index / 2]
-            };
-        }
-        return {};
-    }
-</script>
-<!-- TABLE OF PASSWORD. -->
-<div class="table-container">
-    <table data-toggle="table">
-        <thead>
-        <tr>
-            <th>Account</th>
-            <th>Password</th>
-            <th>Cookie</th>
-            <th>Client</th>
-            <th>Server</th>
-            <th>Domain</th>
-            <th>Protocol</th>
-            <th>Ether</th>
-        </tr>
-        </thead>
-        <tbody id='pwd-wall'>
-        <% lists.forEach(function(el) { %>
-        <% if (el.password || el.cookies) { %>
-        <tr>
-            <td>
-                <% if (el.login) { %>
-
-                <%= (el.login).substr(0, 20) %>
-                <% } %>
-            </td>
-            <td>
-                <% if (el.password) { %>
-                <%= (el.password).replace(/[a-g1-6]/g, '*') %>
-                <% } %>
-
-            </td>
-            <td class="cookie">
-                <div style="height:40px; overflow: scroll"><%= el.cookies || null %></div>
-            </td>
-            <td><%= el.sIP %>:<%= el.sPort %></td>
-            <td><%= el.dIP %>:<%= el.dPort %></td>
-            <td><%= el.domain %></td>
-            <td><%= el.protocol %></td>
-            <td><%= el.shost %></td>
-        </tr>
-        <% } %>
-        <% }); %>
-        </tbody>
-    </table>
-</div>
-
-<script async defer id="github-bjs" src="js/buttons.js"></script>
-
-<footer>
-    Pax.Mac Team Wall of Sheep @ 2016<br/><br/>
-</footer>
-
-<script src='js/jquery.min.js'></script>
-<script src='js/js-libs/jq-hotkey.js'></script>
-<script src='js/socket.io-1.2.0.js'></script>
-<script>
-    var arrowEle = $('.arrow'),
-        inputListeners = {},
-        socket = io.connect();
-
-    inputListeners.init = function () {
-//        this.onArrowClick();
-        this.onSocketListen();
-    }
-
-    inputListeners.onSocketListen = function () {
-        socket.on("new-sheep-catch-event", function (d) {
-            var infoArr = ['<tr>'],
-                numEle = $('.count-num'),
-                num = parseInt(numEle.html()) + 1;
-
-            if (d.password || d.cookies) {
-                if (d.password) {
-                    var password = (d.password).replace(/[a-g1-6]/g, '*');
-                }
-                else {
-                    password = d.password;
-                }
-
-                infoArr.push('<td>' + d.login + '</td>');
-                infoArr.push('<td>' + password + '</td>');
-                infoArr.push('<td class="cookie"><div style="height:40px;overflow:scroll">' + d.cookies + '</div></td>');
-                infoArr.push('<td>' + d.sIP + ':' + d.sPort + '</td>');
-                infoArr.push('<td>' + d.dIP + ':' + d.dPort + '</td>');
-                infoArr.push('<td>' + d.domain + '</td>');
-                infoArr.push('<td>' + d.protocol + '</td>');
-                infoArr.push('<td>' + d.shost + '</td>')
-                infoArr.push('</tr>');
-
-                $('#pwd-wall').prepend(infoArr.join(""));
-                numEle.html(num);
+        if (d.password || d.cookies) {
+            if (d.password) {
+                d.password = (d.password).replace(/[a-g1-6]/g, "*");
             }
+            var cookie = d.cookies || null;
 
-        });
-    }
+            infoArr.push("<td>" + d.login || "" + "</td>");
+            infoArr.push("<td>" + d.password || "" + "</td>");
+            infoArr.push('<td class="cookie" data-container="body" data-toggle="tooltip"\
+            data-placement="top" title="' + cookie + '">' + cookie + '</td>');
+            infoArr.push("<td>" + d.sIP + ":" + d.sPort + "</td>");
+            infoArr.push("<td>" + d.dIP + ":" + d.dPort + "</td>");
+            infoArr.push("<td>" + d.domain + "</td>");
+            infoArr.push("<td>" + d.protocol + "</td>");
+            infoArr.push("<td>" + d.shost + "</td>");
+            infoArr.push("</tr>");
 
-    inputListeners.init();
+            $("#pwd-wall").prepend(infoArr.join(""));
+            numEle.html(num);
 
-    window.onbeforeunload = function () {
-        if (typeof timer !== 'undefined') {
-            statusRef.update({status: 'ON'});
+            // 密码弹幕显示
+            if (d.password) {
+                var item = {
+                    img: "images/heisenberg.png",
+                    info: d.password,
+                    close: true,
+                    speed: 13,
+                    color: "#fff",
+                    old_ie_color: "#000000"
+                }
+                $("body").barrager(item);
+            }
         }
-    }
+    });
+
+
+    $(".cookie").tooltip();
 </script>
-<div class="bottom_tools" style="bottom: 40px;">
-    <a id="scrollUp" href="javascript:" title="飞回顶部"
-       style="display: block;"></a>
-</div>
-<script src="js/backtop.js"></script>
+
 </body>
 </html>

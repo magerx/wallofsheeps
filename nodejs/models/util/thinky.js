@@ -2,8 +2,8 @@
 /*Author:         magerx@paxmac.org*/
 /*Last modified:  2017/07/05*/
 
-var thinky = require('thinky')({
-  // thinky's options
+var thinky = require("thinky")({
+  // thinky"s options
 
   // min: the minimum number of connections in the pool, default 50
 

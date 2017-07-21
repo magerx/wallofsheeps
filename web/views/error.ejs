@@ -1,3 +1,42 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Wall of sheep</title>
+    <meta name="description" content="Wall of sheep"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+    <link rel="apple-touch-icon" href="images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Wallofsheep">
+    <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" sizes="196x196" href="images/logo.png">
+    <!-- style -->
+    <link rel="stylesheet" href="css/animate.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/glyphicons.css" type="text/css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/material-design-icons.css" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/app.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/font.css" type="text/css"/>
+</head>
+<body>
+<div class="app" id="app">
+    <div class="app-body dark bg-auto w-full">
+        <div class="text-center pos-rlt p-y-md">
+            <h1 class="text-shadow m-a-0 text-white text-4x">
+                <span class="text-2x font-bold block m-t-lg"><%= error.status %></span>
+            </h1>
+            <h2 class="h1 m-y-lg text-black">OOPS!</h2>
+            <p class="h5 m-y-lg text-u-c font-bold text-black"><%= message %></p>
+            <a href="/index" class="md-btn amber-700 md-raised p-x-md">
+                <span class="text-white">Go to the home page</span>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
