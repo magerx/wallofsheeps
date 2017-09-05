@@ -104,4 +104,5 @@ Now, You can wait for the comming sheep
 Screenshot
 ===========
 ![wallofsheep](screenshot/password.jpg)
+![wallofsheep](screenshot/command_line.png)
 ![wallofsheep](screenshot/photos.jpg)

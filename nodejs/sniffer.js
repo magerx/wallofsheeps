@@ -8,7 +8,7 @@ var protocol = require("./protocol");
 var logger = require("./util/logger");
 var pcap = require("pcap");
 var argv = require("minimist")(process.argv.slice(2));
-var request = require("request");
+var request = require("sync-request");
 
 if (argv.s) {
     var User = require("./models/user");
@@ -82,18 +82,24 @@ function HTTPDataParser(packet) {
             var pattern = new RegExp("\.(jpg|png|gif|jpeg|bmp)$", "i");
 
             if (pattern.test(path)) {
-                picture = "http://" + domain + uri;
-                request.head(picture, function (error, response) {
-                    var status = response.statusCode;
-                    if (!error && status === 200) {
-                        var picture = picture;
-                    }
-                    else {
-                        picture = null;
-                    }
-                })
-            }
+                var headURL = "http://" + domain + path;
 
+                try{
+                    var response = request("HEAD", headURL);
+
+                    if (response) {
+                        var status = response.statusCode;
+                        var contentLength = response.headers["content-length"] || 0;
+                        if (status === 200 && contentLength > 0) {
+                            picture = headURL;
+                        }
+                    }
+                }
+                catch(e) {
+                    logger.error(e);
+                }
+
+            }
         }
 
         var sheepInfo = qs.parse(content);

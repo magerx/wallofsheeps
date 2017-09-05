@@ -11,3 +11,8 @@ body {
     text-overflow: ellipsis;
     max-width: 300px;
 }
+
+.btn-img {
+    height:74px;
+    width:74px;
+}

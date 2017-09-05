@@ -17,7 +17,7 @@ module.exports = function (io) {
     });
 
     // index
-    router.get("/index", function (req, res) {
+    router.get("/", function (req, res) {
         var list = [],
             r = thinky.r;
 
